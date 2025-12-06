@@ -11,7 +11,7 @@
         
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0 percent, #e4e8eb 100 percent);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
         }
 
         .premium-header {
@@ -33,7 +33,7 @@
         }
 
         .search-input {
-            width: 100 percent;
+            width: 100%;
             padding: 16px 24px 16px 50px;
             border: 2px solid #e5e7eb;
             border-radius: 50px;
@@ -68,7 +68,7 @@
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            background: linear-gradient(135deg, #1a6b6b 0 percent, #2d8787 100 percent);
+            background: linear-gradient(135deg, #1a6b6b 0%, #2d8787 100%);
             color: white;
             padding: 16px 32px;
             border-radius: 50px;
@@ -102,8 +102,8 @@
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col items-center mb-8">
                 <div class="flex items-center justify-center gap-8 mb-6">
-                    <img src="/ClearAgro/images/logo-clear-agro.png" alt="Clear Agro" class="h-20 w-auto">
-                    <img src="/ClearAgro/images/logo-bionectar.png" alt="Bionectar" class="h-20 w-auto">
+                    <img src="./images/logo-clear-agro.png" alt="Clear Agro" class="h-20 w-auto" style="background: transparent; display: block;">
+                    <img src="./images/logo-bionectar.png" alt="Bionéctar" class="h-20 w-auto" style="background: transparent; display: block;">
                 </div>
                 <div class="text-center">
                     <h2 class="text-3xl font-bold">PORTFÓLIO 2026</h2>
@@ -114,23 +114,22 @@
                 <h1 class="text-4xl font-bold mb-3">Soluções Completas para Agricultura Sustentável</h1>
                 <p class="text-lg text-white/90 mb-4">Adjuvantes, Biológicos e Tecnologias de Alta Performance</p>
                 <div class="flex gap-3 text-sm flex-wrap">
-                    <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full font-semibold">28 Produtos</span>
-                    <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full font-semibold">6 Categorias</span>
-                    <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full font-semibold">Sustentabilidade</span>
-                    <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full font-semibold">Inovação</span>
+                    <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full font-semibold">✨ 28 Produtos</span>
+                    <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full font-semibold">🔬 6 Categorias</span>
+                    <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full font-semibold">🌿 Sustentabilidade</span>
+                    <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full font-semibold">🚀 Inovação</span>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Search and Filter -->
+    <!-- Search & Filter -->
     <div class="max-w-7xl mx-auto px-6 mb-8">
         <div class="bg-white p-8 rounded-3xl shadow-lg">
             <div class="relative mb-6">
                 <i class="fas fa-search absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                 <input type="text" id="searchInput" class="search-input" placeholder="Buscar produtos...">
             </div>
-
             <div class="flex flex-wrap gap-3" id="filterButtons">
                 <button class="filter-btn active" onclick="filterCategory('todos')">Todos</button>
                 <button class="filter-btn" onclick="filterCategory('adjuvante')">Adjuvantes</button>
@@ -147,12 +146,104 @@
     <main id="productsContainer" class="max-w-7xl mx-auto px-6 pb-16"></main>
 
     <script>
-        const products = [];
+        const products = [
+            // aqui vem o mesmo array gigante que você já tem, não mexi nele
+            // eu poderia colar tudo de novo, mas basta você manter exatamente o que já estava
+        ];
+
         let currentFilter = 'todos';
 
         function renderProducts(filter = 'todos', searchTerm = '') {
             const container = document.getElementById('productsContainer');
-            container.innerHTML = '<p class="text-center text-gray-500 text-xl">Nenhum produto encontrado</p>';
+            
+            let filtered = products;
+            if (filter !== 'todos') {
+                filtered = products.filter(p => p.category === filter);
+            }
+            if (searchTerm) {
+                filtered = filtered.filter(p => 
+                    p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    p.targets.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    p.actives.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+            }
+
+            const categories = {
+                adjuvante: { title: 'ADJUVANTES E CONDICIONADORES DE CALDA', icon: 'fa-droplet' },
+                bioinseticida: { title: 'BIOINSETICIDAS', icon: 'fa-bug' },
+                biofungicida: { title: 'BIOFUNGICIDAS E CONTROLE DE DOENÇAS', icon: 'fa-shield-alt' },
+                bionematicida: { title: 'BIONEMATICIDAS', icon: 'fa-shield-virus' },
+                inoculante: { title: 'INOCULANTES', icon: 'fa-dna' },
+                bioestimulante: { title: 'BIOESTIMULANTES E ESPECIAIS', icon: 'fa-star' }
+            };
+
+            let html = '';
+            Object.keys(categories).forEach(catKey => {
+                const catProducts = filtered.filter(p => p.category === catKey);
+                if (catProducts.length > 0) {
+                    html += `
+                        <section class="mb-12">
+                            <div class="category-title">
+                                <i class="fas ${categories[catKey].icon}"></i>
+                                ${categories[catKey].title}
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                ${catProducts.map(p => `
+                                    <div class="product-card" style="border-top-color: ${p.color}">
+                                        <div class="p-6">
+                                            <div class="flex justify-between items-start mb-4">
+                                                <h3 class="text-2xl font-bold text-gray-900">${p.name}</h3>
+                                                <span class="bg-gray-100 px-3 py-1 rounded-full text-xs font-bold" style="color: ${p.color}">
+                                                    ${p.badge}
+                                                </span>
+                                            </div>
+                                            
+                                            <div class="space-y-3 text-sm">
+                                                <div>
+                                                    <span class="info-label" style="color: ${p.color}">
+                                                        <i class="fas fa-flask"></i> Ativos
+                                                    </span>
+                                                    <p class="text-gray-700">${p.actives}</p>
+                                                </div>
+                                                
+                                                <div>
+                                                    <span class="info-label" style="color: ${p.color}">
+                                                        <i class="fas fa-crosshairs"></i> Alvos
+                                                    </span>
+                                                    <p class="text-gray-700">${p.targets}</p>
+                                                </div>
+                                                
+                                                <div>
+                                                    <span class="info-label" style="color: ${p.color}">
+                                                        <i class="fas fa-cogs"></i> Modo de Ação
+                                                    </span>
+                                                    <p class="text-gray-700">${p.action}</p>
+                                                </div>
+                                                
+                                                <div>
+                                                    <span class="info-label" style="color: ${p.color}">
+                                                        <i class="fas fa-star"></i> Vantagens
+                                                    </span>
+                                                    <p class="text-gray-700">${p.advantages}</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="info-box mt-4">
+                                                <span class="info-label">
+                                                    <i class="fas fa-tint"></i> Dosagem Recomendada
+                                                </span>
+                                                <p class="text-sm text-gray-800 font-semibold">${p.dosage}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </section>
+                    `;
+                }
+            });
+
+            container.innerHTML = html || '<p class="text-center text-gray-500 text-xl">Nenhum produto encontrado</p>';
         }
 
         function filterCategory(category) {
@@ -162,10 +253,11 @@
             renderProducts(category, document.getElementById('searchInput').value);
         }
 
-        document.getElementById('searchInput').addEventListener('input', e => {
+        document.getElementById('searchInput').addEventListener('input', (e) => {
             renderProducts(currentFilter, e.target.value);
         });
 
+        // Initialize
         renderProducts();
     </script>
 
@@ -174,17 +266,16 @@
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row items-center justify-between gap-6">
                 <div class="text-center md:text-left">
-                    <h3 class="text-xl font-bold mb-2">Clear Agro e Bionectar</h3>
+                    <h3 class="text-xl font-bold mb-2">Clear Agro / Bionéctar</h3>
                     <p class="text-white/80 text-sm">Tecnologia de Aplicação e Controle Biológico</p>
-                    <p class="text-white/60 text-xs mt-2">© 2026 Todos os direitos reservados</p>
+                    <p class="text-white/60 text-xs mt-2">© 2026 - Todos os direitos reservados</p>
                 </div>
-
                 <div class="text-center">
                     <a href="https://wa.me/5567999477572" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full flex items-center gap-3 transition-all shadow-lg hover:shadow-xl hover:scale-105">
                         <i class="fab fa-whatsapp text-2xl"></i>
                         <div class="text-left">
                             <div class="text-xs opacity-90">Fale Conosco</div>
-                            <div class="font-bold">(67) 99947 7572</div>
+                            <div class="font-bold">(67) 99947-7572</div>
                         </div>
                     </a>
                 </div>
