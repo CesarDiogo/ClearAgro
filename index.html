@@ -100,4 +100,97 @@
     <!-- Header -->
     <header class="premium-header text-white py-12 px-6 mb-12">
         <div class="max-w-7xl mx-auto">
-            <div class="fle
+            <div class="flex flex-col items-center mb-8">
+                <div class="flex items-center justify-center gap-8 mb-6">
+                    <img src="/ClearAgro/images/logo-clear-agro.png" alt="Clear Agro" class="h-20 w-auto">
+                    <img src="/ClearAgro/images/logo-bionectar.png" alt="Bionectar" class="h-20 w-auto">
+                </div>
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold">PORTFÓLIO 2026</h2>
+                    <p class="text-white/90 text-sm mt-1">Tecnologia de Aplicação e Controle Biológico</p>
+                </div>
+            </div>
+            <div class="border-t border-white/20 pt-6">
+                <h1 class="text-4xl font-bold mb-3">Soluções Completas para Agricultura Sustentável</h1>
+                <p class="text-lg text-white/90 mb-4">Adjuvantes, Biológicos e Tecnologias de Alta Performance</p>
+                <div class="flex gap-3 text-sm flex-wrap">
+                    <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full font-semibold">28 Produtos</span>
+                    <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full font-semibold">6 Categorias</span>
+                    <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full font-semibold">Sustentabilidade</span>
+                    <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full font-semibold">Inovação</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search and Filter -->
+    <div class="max-w-7xl mx-auto px-6 mb-8">
+        <div class="bg-white p-8 rounded-3xl shadow-lg">
+            <div class="relative mb-6">
+                <i class="fas fa-search absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                <input type="text" id="searchInput" class="search-input" placeholder="Buscar produtos...">
+            </div>
+
+            <div class="flex flex-wrap gap-3" id="filterButtons">
+                <button class="filter-btn active" onclick="filterCategory('todos')">Todos</button>
+                <button class="filter-btn" onclick="filterCategory('adjuvante')">Adjuvantes</button>
+                <button class="filter-btn" onclick="filterCategory('bioinseticida')">Bioinseticidas</button>
+                <button class="filter-btn" onclick="filterCategory('biofungicida')">Biofungicidas</button>
+                <button class="filter-btn" onclick="filterCategory('bionematicida')">Bionematicidas</button>
+                <button class="filter-btn" onclick="filterCategory('inoculante')">Inoculantes</button>
+                <button class="filter-btn" onclick="filterCategory('bioestimulante')">Bioestimulantes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Products -->
+    <main id="productsContainer" class="max-w-7xl mx-auto px-6 pb-16"></main>
+
+    <script>
+        const products = [];
+        let currentFilter = 'todos';
+
+        function renderProducts(filter = 'todos', searchTerm = '') {
+            const container = document.getElementById('productsContainer');
+            container.innerHTML = '<p class="text-center text-gray-500 text-xl">Nenhum produto encontrado</p>';
+        }
+
+        function filterCategory(category) {
+            currentFilter = category;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderProducts(category, document.getElementById('searchInput').value);
+        }
+
+        document.getElementById('searchInput').addEventListener('input', e => {
+            renderProducts(currentFilter, e.target.value);
+        });
+
+        renderProducts();
+    </script>
+
+    <!-- Footer -->
+    <footer class="premium-header text-white py-8 px-6 mt-16">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="text-center md:text-left">
+                    <h3 class="text-xl font-bold mb-2">Clear Agro e Bionectar</h3>
+                    <p class="text-white/80 text-sm">Tecnologia de Aplicação e Controle Biológico</p>
+                    <p class="text-white/60 text-xs mt-2">© 2026 Todos os direitos reservados</p>
+                </div>
+
+                <div class="text-center">
+                    <a href="https://wa.me/5567999477572" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full flex items-center gap-3 transition-all shadow-lg hover:shadow-xl hover:scale-105">
+                        <i class="fab fa-whatsapp text-2xl"></i>
+                        <div class="text-left">
+                            <div class="text-xs opacity-90">Fale Conosco</div>
+                            <div class="font-bold">(67) 99947 7572</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
