@@ -102,8 +102,8 @@
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col items-center mb-8">
                 <div class="flex items-center justify-center gap-8 mb-6">
-                    <img src="./images/logo-clear-agro.png" alt="Clear Agro" class="h-20 w-auto" style="background: transparent; display: block;">
-                    <img src="./images/logo-bionectar.png" alt="Bionéctar" class="h-20 w-auto" style="background: transparent; display: block;">
+                    <img src="https://cesardiogo.github.io/ClearAgro/images/logo-clear-agro.png" alt="Clear Agro" class="h-20 w-auto" style="background: transparent; display: block;">
+                    <img src="https://cesardiogo.github.io/ClearAgro/images/logo-bionectar.png" alt="Bionéctar" class="h-20 w-auto" style="background: transparent; display: block;">
                 </div>
                 <div class="text-center">
                     <h2 class="text-3xl font-bold">PORTFÓLIO 2026</h2>
@@ -147,9 +147,318 @@
 
     <script>
         const products = [
-            // aqui vem o mesmo array gigante que você já tem, não mexi nele
-            // eu poderia colar tudo de novo, mas basta você manter exatamente o que já estava
-        ];
+    // 1. ADJUVANTES E CONDICIONADORES DE CALDA
+    {
+        name: "ELEKTRA",
+        category: "adjuvante",
+        badge: "Adjuvante Premium",
+        icon: "fa-droplet",
+        color: "#8b5cf6",
+        actives: "Hidrocoloides, óleos especiais, surfactantes, aditivos eletrostáticos",
+        targets: "Otimização de aplicações e proteção de biológicos",
+        action: "Melhora espalhamento, adesão e penetração. Aditivos eletrostáticos melhoram deposição. Protege microrganismos.",
+        advantages: "Protege biológicos do UV e temperaturas. Reduz deriva. Melhora cobertura. Alta compatibilidade.",
+        dosage: "Foliar: 50-100 mL/100L"
+    },
+    {
+        name: "COMPATIBILIZE",
+        category: "adjuvante",
+        badge: "Condicionador",
+        icon: "fa-water",
+        color: "#06b6d4",
+        actives: "Blend de surfactantes, umectantes, dispersantes",
+        targets: "Compatibilização e condicionamento de calda",
+        action: "Melhora dispersão e solubilização. Reduz tensão superficial. Previne precipitação.",
+        advantages: "Uniformiza aplicação. Compatibiliza produtos em tanque mix. Dose baixa.",
+        dosage: "Calda: 0,025-0,05 mL/L"
+    },
+    {
+        name: "ION+",
+        category: "adjuvante",
+        badge: "Pontos Quânticos",
+        icon: "fa-bolt",
+        color: "#f59e0b",
+        actives: "Pontos Quânticos de Carbono (Carbon Quantum Dots)",
+        targets: "Ativação fotossintética e proteção UV",
+        action: "Nanotecnologia. Absorve luz UV e reemite como luz fotossinteticamente ativa. Ativa metabolismo.",
+        advantages: "Aumenta eficiência fotossintética. Protege contra UV. Tecnologia exclusiva de nanotecnologia.",
+        dosage: "Foliar: 50 mL/ha"
+    },
+    {
+        name: "PORTE UP",
+        category: "bioestimulante",
+        badge: "Arquitetura de Plantas",
+        icon: "fa-seedling",
+        color: "#0891b2",
+        actives: "Cloreto de magnésio + água. Auxina e Citocinina. Garantia: N (8,50%), Ca (1,35%), Zn (0,50%), Mn (0,50%), B (0,10%), K₂O (3,50%). Ácidos carboxílicos",
+        targets: "Arquitetura de plantas e maior engalhamento. Soja, Feijão, Leguminosas, Trigo, Cereais, Algodão",
+        action: "Tecnologia ARQ: Bloqueia transporte polar de auxina no floema. Quebra dominância apical. Forma ramos laterais. Balanço favorável de citocinina aumenta atividade das gemas axilares, gerando mais ramos reprodutivos e vagens.",
+        advantages: "Aumento de 2 flores/planta. Aumento de 2 vagens/planta. Aumento de 4 grãos/planta. Massa de mil grãos de 170g. População de 220.000 plantas/ha. Incremento médio: 2,5 sacas/ha. Mantém planta em desenvolvimento. Aumenta nós. Enrijece caule. Aumenta viabilidade de ramos reprodutivos.",
+        dosage: "Soja/Feijão: 0,25-0,4 L/ha (V4-V6) | Trigo/Cereais: 0,25-0,4 L/ha (início perfilhamento) | Algodão: 0,3-1,0 L/ha (2-4 aplicações até formação de maçãs)"
+    },
+    {
+        name: "REDUTOP",
+        category: "adjuvante",
+        badge: "Tamponante pH",
+        icon: "fa-vials",
+        color: "#10b981",
+        actives: "Tamponantes, surfactantes, sequestradores",
+        targets: "Estabilização de pH da calda",
+        action: "Tampona e estabiliza pH. Sequestra cálcio, magnésio e ferro. Previne degradação.",
+        advantages: "pH estável. Remove íons problemáticos. Previne incompatibilidade. Protege produtos sensíveis.",
+        dosage: "Calda: 50-80 mL/ha"
+    },
+    {
+        name: "TOP CLEAR",
+        category: "adjuvante",
+        badge: "Antiespumante",
+        icon: "fa-pump-soap",
+        color: "#14b8a6",
+        actives: "Antiespuma + surfactantes",
+        targets: "Controle de espuma",
+        action: "Elimina e previne formação de espuma em caldas.",
+        advantages: "Elimina espuma rapidamente. Facilita preparo de calda. Não interfere em produtos.",
+        dosage: "Calda: 40 mL/ha"
+    },
+    {
+        name: "LIMOTECH",
+        category: "adjuvante",
+        badge: "Limpeza",
+        icon: "fa-lemon",
+        color: "#f97316",
+        actives: "Óleo de laranja + surfactantes siliconados",
+        targets: "Limpeza de equipamentos",
+        action: "D-limoneno dissolve resinas e óleos. Ação desengordurante potente.",
+        advantages: "Limpa bicos e tanques. Remove crostas. Biodegradável. Aroma agradável.",
+        dosage: "Limpeza: 100-200 mL/100L"
+    },
+    {
+        name: "CITRO +",
+        category: "adjuvante",
+        badge: "Surfactante Natural",
+        icon: "fa-leaf",
+        color: "#84cc16",
+        actives: "Surfactante de óleo de citronela",
+        targets: "Espalhamento",
+        action: "Reduz tensão superficial. Melhora cobertura.",
+        advantages: "Origem natural. Espalhante eficaz. Leve ação repelente.",
+        dosage: "Foliar: 100-200 mL/ha"
+    },
+    {
+        name: "DESALOJE",
+        category: "adjuvante",
+        badge: "Desalojante",
+        icon: "fa-wind",
+        color: "#64748b",
+        actives: "Sais, surfactantes e aromas",
+        targets: "Desalojamento de pragas",
+        action: "Sais desidratam cutícula. Surfactantes removem proteção cerosa.",
+        advantages: "Desaloja pragas escondidas. Facilita contato com inseticidas. Ação física.",
+        dosage: "Foliar: 40-70 g/ha"
+    },
+
+    // 2. BIOINSETICIDAS
+    {
+        name: "CHROMO B",
+        category: "bioinseticida",
+        badge: "Bactéria Entomopatogênica",
+        icon: "fa-bug",
+        color: "#4f46e5",
+        actives: "Chromobacterium subtsugae (>1×10⁹ UFC/mL)",
+        targets: "Percevejos, Mosca-branca, Pulgões, Ácaros, Tripes, Cigarrinhas",
+        action: "Produz violaceína e quitinases. Age por ingestão. Atividade anti-alimentar.",
+        advantages: "Resistência ao calor. Mortalidade em 1-10 dias. Amplo espectro.",
+        dosage: "Foliar: 300-400 mL/ha | Intervalo: 8-10 dias"
+    },
+    {
+        name: "INSECT CONTROL",
+        category: "bioinseticida",
+        badge: "Mix 3 Fungos",
+        icon: "fa-spider",
+        color: "#2563eb",
+        actives: "Isaria fumosorosea (>5×10⁹), Beauveria bassiana (>2×10⁹), Metarhizium anisopliae (>2×10⁹)",
+        targets: "Percevejos, Mosca-branca, Pulgões, Cigarrinhas",
+        action: "Infecção por contato. Três fungos entomopatogênicos com efeito sinérgico.",
+        advantages: "Triplo modo de ação. Armazenamento temperatura ambiente. Efeito sinérgico.",
+        dosage: "Foliar: 400 mL/ha"
+    },
+    {
+        name: "CRYSTAL 3D",
+        category: "bioinseticida",
+        badge: "Bt Lagarticida",
+        icon: "fa-worm",
+        color: "#4b5563",
+        actives: "Bacillus thuringiensis kurstaki (>5×10⁸ UFC/mL)",
+        targets: "Lagartas: Spodoptera, Helicoverpa, Anticarsia, Chrysodeixis",
+        action: "Age por ingestão. Proteínas Cry paralisam o aparelho digestivo.",
+        advantages: "Controle específico. Seguro para outros organismos. Sem carência.",
+        dosage: "Foliar: 400 mL/ha | Reaplicar: 8-10 dias"
+    },
+
+    // 3. BIOFUNGICIDAS E CONTROLE DE DOENÇAS
+    {
+        name: "CLEARZEB",
+        category: "biofungicida",
+        badge: "Ativador SAR",
+        icon: "fa-shield",
+        color: "#10b981",
+        actives: "Ácido Acetil Salicílico + Ácido Peracético + Carbon Quantum Dots",
+        targets: "Ativação de resistência sistêmica. Redução de inóculo na palhada. Doenças foliares",
+        action: "ASA ativa defesas (SAR). Peracético oxida patógenos e reduz inóculo. Quantum Dots melhoram absorção.",
+        advantages: "Diminui inóculo na palhada. Ativa sistema imune vegetal desde V4. Aplicações V4, V8-R1, R5.2. Intervalo 15 dias. Potencializa fungicidas.",
+        dosage: "Foliar: 25-50 mL/ha (V4, V8-R1, R5.2 - Intervalo 15 dias)"
+    },
+    {
+        name: "BIOPROTECT",
+        category: "biofungicida",
+        badge: "Biofilme Foliar",
+        icon: "fa-shield-alt",
+        color: "#eab308",
+        actives: "Bacillus amyloliquefaciens (2,5×10⁹ UFC/mL)",
+        targets: "DFC's: Antracnose, Cercospora kikuchii, Septoriose glycine, Colletotrichum, Crestamento, Mancha Olho de Rã",
+        action: "Forma biofilme foliar. Produz lipopeptídeos antifúngicos. Promotor de crescimento.",
+        advantages: "Alta estabilidade. Validade 1 ano. Carência zero. Compatível com químicos.",
+        dosage: "Foliar: 300-750 mL/ha"
+    },
+    {
+        name: "TRICHO +",
+        category: "biofungicida",
+        badge: "Antagonista de Solo",
+        icon: "fa-bacteria",
+        color: "#16a34a",
+        actives: "Trichoderma harzianum (>2×10⁹ blastósporos/mL)",
+        targets: "Mofo Branco, Rizoctonia, Fusarium, Podridão Cinzenta, Pythium",
+        action: "Parasitismo de fungos. Competição. Antibiose. Degrada parede celular.",
+        advantages: "Maior sanidade radicular. Melhor estande. Promotor de crescimento.",
+        dosage: "Sulco: 150-360 mL/ha | TS Soja: 2 mL/kg | Foliar: 150 mL/ha"
+    },
+
+    // 4. BIONEMATICIDAS
+    {
+        name: "NEMASTOP",
+        category: "bionematicida",
+        badge: "Fungo Quitinolítico",
+        icon: "fa-shield-virus",
+        color: "#9333ea",
+        actives: "Paecilomyces lilacinus / Purpureocillium lilacinum (>3×10⁹ blastósporos/mL)",
+        targets: "Pratylenchus, Meloidogyne, Heterodera, Rotylenchulus",
+        action: "Coloniza ovos, fêmeas sedentárias e juvenis. Degrada quitina. Reduz população de nematoides no solo.",
+        advantages: "Validade 1 ano sem refrigeração. 90-95% blastósporos estáveis. Ação prolongada. Redução real da população.",
+        dosage: "Sulco: 150 mL/ha | TS Soja: 2 mL/kg | TS Milho: 3-5 mL/kg"
+    },
+
+    // 5. INOCULANTES
+    {
+        name: "BIOBRADY",
+        category: "inoculante",
+        badge: "Inoculante Soja",
+        icon: "fa-dna",
+        color: "#22c55e",
+        actives: "Bradyrhizobium japonicum (>7,5×10⁹ UFC/mL)",
+        targets: "Fixação Biológica de Nitrogênio - Soja",
+        action: "Forma nódulos radiculares eficientes. Fixa N₂ atmosférico.",
+        advantages: "Alta concentração. Cepas selecionadas. Padrão de qualidade.",
+        dosage: "TS Soja: 50 mL/sc 40kg | Sulco/Foliar: 150-200 mL/ha"
+    },
+    {
+        name: "BIOAZO",
+        category: "inoculante",
+        badge: "Inoculante Gramíneas",
+        icon: "fa-seedling",
+        color: "#0f766e",
+        actives: "Azospirillum brasilense AB-V5 + AB-V6 (>3×10⁸ UFC/mL)",
+        targets: "Milho, Trigo, Gramíneas",
+        action: "Fixação de N. Produção de hormônios (auxinas, giberelinas). Associação com raízes.",
+        advantages: "Maior volume radicular. Melhor aproveitamento de nutrientes. Duas cepas sinérgicas.",
+        dosage: "TS Milho: 4-5 mL/kg | TS Trigo: 0,5-1 mL/kg"
+    },
+
+    // 6. BIOESTIMULANTES E ESPECIAIS
+    {
+        name: "BIOPRO N",
+        category: "bioestimulante",
+        badge: "Fixador N Foliar",
+        icon: "fa-cloud",
+        color: "#0ea5e9",
+        actives: "Rhodopseudomonas palustris (1×10⁸) + Methylobacterium symbioticum (1×10⁸)",
+        targets: "Fixação Foliar de Nitrogênio",
+        action: "Coloniza folhas via estômatos. Fixa N₂ atmosférico e converte em amônio. Endofítico foliar.",
+        advantages: "Incremento até 2.088 kg/ha. Tecnologia exclusiva mundial. Reduz dependência de N do solo.",
+        dosage: "Foliar: 400 mL/ha entre V4-V10 | Aplicar cedo da manhã"
+    },
+    {
+        name: "PROGENESIS X",
+        category: "bioestimulante",
+        badge: "RNA's + Nutrientes",
+        icon: "fa-dna",
+        color: "#ec4899",
+        actives: "RNA's (30 Small Nucleotídeos), Aminoácidos, Proteínas. N (4,1%); P₂O₅ (2%); K₂O (3%); B (0,1%); Co (0,01%); Cu (0,3%); Fe (0,3%); Mn (1%); Mo (0,05%); S (2,3%)",
+        targets: "Ativação metabólica e nutricional",
+        action: "RNA's ativam expressão gênica. Aminoácidos livres. Nutrientes prontamente disponíveis.",
+        advantages: "Estimula crescimento. Aumenta resistência. Ativação gênica rápida. Rica fonte de N orgânico.",
+        dosage: "Foliar: 200-400 mL/ha"
+    },
+    {
+        name: "SULFORPRO",
+        category: "bioestimulante",
+        badge: "Enxofre Especial",
+        icon: "fa-flask",
+        color: "#fbbf24",
+        actives: "Enxofre na forma de sulfonato (S 10%)",
+        targets: "Fornecimento de enxofre e ativação metabólica",
+        action: "Enxofre na forma de sulfonato altamente disponível. Ativa síntese de proteínas e aminoácidos.",
+        advantages: "Alta solubilidade. Rápida absorção. Essencial para síntese proteica. Melhora qualidade.",
+        dosage: "Foliar: 200-400 mL/ha"
+    },
+    {
+        name: "FLOW",
+        category: "bioestimulante",
+        badge: "Cobre Nanoparticulado",
+        icon: "fa-shield-heart",
+        color: "#d97706",
+        actives: "Cobre nutricional nanoparticulado",
+        targets: "Ativador de defesas. Fungicida/bactericida. Redução de estresse",
+        action: "Cobre nanoparticulado de alta disponibilidade. Ativa enzimas de defesa. Aumenta resistência a doenças e pragas. Seguro fisiológico da lavoura.",
+        advantages: "Compatível com biológicos. Ativador de enzimas. Aumenta resistência a estresses. Ação fungicida e bactericida auxiliar. Não interfere na microbiota benéfica.",
+        dosage: "Foliar: Consultar recomendação técnica"
+    },
+    {
+        name: "MIX XR",
+        category: "bioestimulante",
+        badge: "Coquetel Enraizador",
+        icon: "fa-seedling",
+        color: "#db2777",
+        actives: "7 Microrganismos (Bacillus subtilis, B. licheniformis, B. polymyxa, B. megaterium, Saccharomyces, Azospirillum, Pseudomonas) + Vitaminas B",
+        targets: "Enraizamento e desenvolvimento inicial",
+        action: "Enraizador potente. Solubiliza P e K. Fixa N. Produz hormônios vegetais.",
+        advantages: "Maior velocidade de emergência. Equilíbrio da biota. Sistema radicular robusto.",
+        dosage: "Sulco: 150-200 mL/ha | TS Soja: 2 mL/kg | TS Milho: 4-5 mL/kg"
+    },
+    {
+        name: "CACTUS",
+        category: "bioestimulante",
+        badge: "Anti-Estresse",
+        icon: "fa-sun",
+        color: "#f97316",
+        actives: "Bacillus aryabhattai (>1×10⁹ UFC/mL)",
+        targets: "Estresse Hídrico, Térmico e Oxidativo",
+        action: "Biofilme (efeito esponja) nas raízes. Controla estômatos. Produz enzimas antioxidantes.",
+        advantages: "Reduz evapotranspiração. Stay Green. Incremento médio 300 kg/ha. Tolerância a seca.",
+        dosage: "TS Milho: 4 mL/kg | Sulco: 100-150 mL/ha | TS Soja: 1-2 mL/kg"
+    },
+    {
+        name: "SOLUBILIZA",
+        category: "bioestimulante",
+        badge: "Solubilizador NPK",
+        icon: "fa-atom",
+        color: "#dc2626",
+        actives: "Pseudomonas fluorescens (>2×10⁹), Bradyrhizobium (>1×10⁹), Azospirillum (>1×10⁸)",
+        targets: "Solubilização de P e K. Fixação de N",
+        action: "Solubiliza fósforo e potássio. Fixação associativa de N. Promoção radicular.",
+        advantages: "Alta compatibilidade com Bradyrhizobium. Economia de fertilizantes. Rizosfera ativa.",
+        dosage: "TS: 1-5 mL/kg | Sulco: 150 mL/ha"
+    }
+];
 
         let currentFilter = 'todos';
 
