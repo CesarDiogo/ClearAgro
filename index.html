@@ -101,10 +101,23 @@
     <header class="premium-header text-white py-12 px-6 mb-12">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col items-center mb-8">
-                <div class="flex items-end justify-center gap-8 mb-6">
-                    <img src="images/logo-clear-agro.png" alt="Clear Agro" style="background: transparent; display: block; padding-top: 44px; height: 190px; width: auto;">
-                    <img src="images/logo-bionectar.png" alt="Bionéctar" style="background: transparent; display: block; height: 140px; width: auto; position: relative; top: -35px;">
+                <div class="flex items-end justify-center gap-4 md:gap-8 mb-6">
+                    <img src="images/logo-clear-agro.png" alt="Clear Agro" class="logo-clear" style="background: transparent; display: block; padding-top: 44px; height: 135px; width: auto; max-width: 48vw;">
+                    <img src="images/logo-bionectar.png" alt="Bionéctar" class="logo-bionectar" style="background: transparent; display: block; height: 90px; width: auto; position: relative; top: -18px; max-width: 45vw;">
                 </div>
+                
+                <!-- Logos maiores apenas em telas médias e grandes -->
+                <style>
+                    @media (min-width: 768px) {
+                        .logo-clear {
+                            height: 210px !important;
+                        }
+                        .logo-bionectar {
+                            height: 140px !important;
+                            top: -35px !important;
+                        }
+                    }
+                </style>
                 <div class="text-center">
                     <h2 class="text-3xl font-bold">PORTFÓLIO 2026</h2>
                     <p class="text-white/90 text-sm mt-1">Tecnologia de Aplicação e Controle Biológico</p>
