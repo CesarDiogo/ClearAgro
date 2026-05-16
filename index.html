@@ -3,691 +3,644 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo Clear Agro 2026</title>
+    <title>BeautyFlow | Sistema para Loja de Cosméticos</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        :root {
+            --rose: #e11d48;
+            --rose-dark: #9f1239;
+            --violet: #7c3aed;
+            --ink: #111827;
+            --soft: #fff1f2;
         }
 
-        .premium-header {
-            background: #007D7C;
+        * {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--ink);
+            background: radial-gradient(circle at top left, #ffe4e6 0, transparent 28rem),
+                        radial-gradient(circle at top right, #ede9fe 0, transparent 24rem),
+                        #f8fafc;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.72);
+            box-shadow: 0 24px 80px rgba(15, 23, 42, 0.08);
+            backdrop-filter: blur(18px);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #be123c 0%, #e11d48 44%, #7c3aed 100%);
+        }
+
+        .module-tab,
+        .category-chip {
+            transition: all 0.2s ease;
+        }
+
+        .module-tab.active,
+        .category-chip.active {
+            color: #fff;
+            background: linear-gradient(135deg, #e11d48, #7c3aed);
+            box-shadow: 0 12px 28px rgba(225, 29, 72, 0.22);
         }
 
         .product-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            border-top: 5px solid #2d8787;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 48px rgba(15, 23, 42, 0.12);
         }
 
-        .search-input {
-            width: 100%;
-            padding: 16px 24px 16px 50px;
-            border: 2px solid #e5e7eb;
-            border-radius: 50px;
-            font-size: 16px;
-            background: #f9fafb;
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: #2d8787;
-            background: white;
-        }
-
-        .filter-btn {
-            padding: 10px 20px;
-            border: 2px solid #e5e7eb;
-            background: white;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.3s;
-        }
-
-        .filter-btn.active {
-            background: #2d8787;
-            color: white;
-            border-color: #2d8787;
-        }
-
-        .category-title {
+        .status-pill {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            background: linear-gradient(135deg, #1a6b6b 0%, #2d8787 100%);
-            color: white;
-            padding: 16px 32px;
-            border-radius: 50px;
-            font-size: 1.3rem;
+            gap: 0.4rem;
+            border-radius: 999px;
+            padding: 0.35rem 0.7rem;
+            font-size: 0.75rem;
             font-weight: 800;
-            margin-bottom: 2rem;
         }
 
-        .info-box {
-            background: #f0fdf4;
-            border: 2px solid #bbf7d0;
-            border-radius: 12px;
-            padding: 0.75rem;
-            margin-top: 0.5rem;
+        .modal {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
         }
 
-        .info-label {
-            font-weight: 700;
-            color: #065f46;
-            font-size: 11px;
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 0.25rem;
+        .modal.open {
+            opacity: 1;
+            pointer-events: auto;
         }
     </style>
 </head>
-<body class="p-4">
-
-    <!-- Header -->
-    <header class="premium-header text-white py-12 px-6 mb-12">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col items-center mb-8">
-                <div class="flex items-end justify-center gap-4 md:gap-8 mb-6">
-                    <img src="images/logo-clear-agro.png" alt="Clear Agro" class="logo-clear" style="background: transparent; display: block; padding-top: 44px; height: 135px; width: auto; max-width: 48vw;">
-                    <img src="images/logo-bionectar.png" alt="Bionéctar" class="logo-bionectar" style="background: transparent; display: block; height: 90px; width: auto; position: relative; top: -18px; max-width: 45vw;">
+<body>
+    <header class="hero-gradient text-white">
+        <nav class="mx-auto flex max-w-7xl flex-col gap-5 px-5 py-6 md:flex-row md:items-center md:justify-between">
+            <div class="flex items-center gap-3">
+                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/20 text-2xl shadow-lg">
+                    <i class="fa-solid fa-spa"></i>
                 </div>
-                
-                <!-- Logos maiores apenas em telas médias e grandes -->
-                <style>
-                    @media (min-width: 768px) {
-                        .logo-clear {
-                            height: 210px !important;
-                        }
-                        .logo-bionectar {
-                            height: 140px !important;
-                            top: -35px !important;
-                        }
-                    }
-                </style>
-                <div class="text-center">
-                    <h2 class="text-3xl font-bold">PORTFÓLIO 2026</h2>
-                    <p class="text-white/90 text-sm mt-1">Tecnologia de Aplicação e Controle Biológico</p>
+                <div>
+                    <p class="text-xs font-black uppercase tracking-[0.35em] text-white/70">BeautyFlow</p>
+                    <h1 class="text-2xl font-black leading-tight">Sistema para Loja de Cosméticos</h1>
                 </div>
             </div>
-            <div class="border-t border-white/20 pt-6 text-center">
-                <h1 class="text-4xl font-bold mb-3">Soluções Completas para Agricultura Sustentável</h1>
-                <p class="text-lg text-white/90 mb-4">Adjuvantes, Biológicos e Tecnologias de Alta Performance</p>
-                <div class="flex gap-3 text-sm flex-wrap justify-center">
-                    <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full font-semibold">✨ 35 Produtos</span>
-                    <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full font-semibold">🔬 6 Categorias</span>
-                    <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full font-semibold">🌿 Sustentabilidade</span>
-                    <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full font-semibold">🚀 Inovação</span>
-                </div>
+            <div class="flex flex-wrap items-center gap-3 text-sm font-bold">
+                <a href="#dashboard" class="rounded-full bg-white/15 px-4 py-2 hover:bg-white/25">Dashboard</a>
+                <a href="#pdv" class="rounded-full bg-white/15 px-4 py-2 hover:bg-white/25">PDV</a>
+                <a href="#clientes" class="rounded-full bg-white/15 px-4 py-2 hover:bg-white/25">Clientes</a>
+                <button onclick="openQuickSale()" class="rounded-full bg-white px-5 py-2 text-rose-700 shadow-xl hover:bg-rose-50">
+                    <i class="fa-solid fa-bag-shopping mr-2"></i>Nova venda
+                </button>
             </div>
-        </div>
-    </header>
+        </nav>
 
-    <!-- Search & Filter -->
-    <div class="max-w-7xl mx-auto px-6 mb-8">
-        <div class="bg-white p-8 rounded-3xl shadow-lg">
-            <div class="relative mb-6">
-                <i class="fas fa-search absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                <input type="text" id="searchInput" class="search-input" placeholder="Buscar produtos...">
-            </div>
-            <div class="flex flex-wrap gap-3" id="filterButtons">
-                <button class="filter-btn active" onclick="filterCategory('todos')">Todos</button>
-                <button class="filter-btn" onclick="filterCategory('adjuvante')">Adjuvantes</button>
-                <button class="filter-btn" onclick="filterCategory('bioinseticida')">Bioinseticidas</button>
-                <button class="filter-btn" onclick="filterCategory('biofungicida')">Biofungicidas</button>
-                <button class="filter-btn" onclick="filterCategory('bionematicida')">Bionematicidas</button>
-                <button class="filter-btn" onclick="filterCategory('inoculante')">Inoculantes</button>
-                <button class="filter-btn" onclick="filterCategory('bioestimulante')">Bioestimulantes</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Products -->
-    <main id="productsContainer" class="max-w-7xl mx-auto px-6 pb-16"></main>
-
-    <script>
-        const products = [
-    // 1. ADJUVANTES E CONDICIONADORES DE CALDA
-    {
-        name: "ELEKTRA",
-        category: "adjuvante",
-        badge: "Adjuvante Premium",
-        icon: "fa-droplet",
-        color: "#8b5cf6",
-        actives: "Hidrocoloides, óleos especiais, surfactantes, aditivos eletrostáticos",
-        targets: "Otimização de aplicações e proteção de biológicos",
-        action: "Melhora espalhamento, adesão e penetração. Aditivos eletrostáticos melhoram deposição. Protege microrganismos.",
-        advantages: "Protege biológicos do UV e temperaturas. Reduz deriva. Melhora cobertura. Alta compatibilidade.",
-        dosage: "Foliar: 50-100 mL/100L"
-    },
-    {
-        name: "COMPATIBILIZE",
-        category: "adjuvante",
-        badge: "Condicionador",
-        icon: "fa-water",
-        color: "#06b6d4",
-        actives: "Blend de surfactantes, umectantes, dispersantes",
-        targets: "Compatibilização e condicionamento de calda",
-        action: "Melhora dispersão e solubilização. Reduz tensão superficial. Previne precipitação.",
-        advantages: "Uniformiza aplicação. Compatibiliza produtos em tanque mix. Dose baixa.",
-        dosage: "Calda: 0,025-0,05 mL/L"
-    },
-    {
-        name: "ION+",
-        category: "adjuvante",
-        badge: "Potencializador de Herbicida",
-        icon: "fa-bolt",
-        color: "#f59e0b",
-        actives: "Pontos Quânticos de Carbono (Carbon Quantum Dots)",
-        targets: "Ativação fotossintética e proteção UV",
-        action: "Nanotecnologia. Absorve luz UV e reemite como luz fotossinteticamente ativa. Ativa metabolismo.",
-        advantages: "Aumenta eficiência fotossintética. Protege contra UV. Tecnologia exclusiva de nanotecnologia.",
-        dosage: "Foliar: 50 mL/ha"
-    },
-    {
-        name: "PORTE UP",
-        category: "bioestimulante",
-        badge: "Arquitetura de Plantas",
-        icon: "fa-seedling",
-        color: "#0891b2",
-        actives: "Cloreto de magnésio + água. Auxina e Citocinina. Garantia: N (8,50%), Ca (1,35%), Zn (0,50%), Mn (0,50%), B (0,10%), K₂O (3,50%). Ácidos carboxílicos",
-        targets: "Arquitetura de plantas e maior engalhamento. Soja, Feijão, Leguminosas, Trigo, Cereais, Algodão",
-        action: "Tecnologia ARQ: Bloqueia transporte polar de auxina no floema. Quebra dominância apical. Forma ramos laterais. Balanço favorável de citocinina aumenta atividade das gemas axilares, gerando mais ramos reprodutivos e vagens.",
-        advantages: "Aumento de 2 flores/planta. Aumento de 2 vagens/planta. Aumento de 4 grãos/planta. Massa de mil grãos de 170g. População de 220.000 plantas/ha. Incremento médio: 2,5 sacas/ha. Mantém planta em desenvolvimento. Aumenta nós. Enrijece caule. Aumenta viabilidade de ramos reprodutivos.",
-        dosage: "Soja/Feijão: 0,25-0,4 L/ha (V4-V6) | Trigo/Cereais: 0,25-0,4 L/ha (início perfilhamento) | Algodão: 0,3-1,0 L/ha (2-4 aplicações até formação de maçãs)"
-    },
-    {
-        name: "REDUTOP",
-        category: "adjuvante",
-        badge: "Tamponante pH",
-        icon: "fa-vials",
-        color: "#10b981",
-        actives: "Tamponantes, surfactantes, sequestradores",
-        targets: "Estabilização de pH da calda",
-        action: "Tampona e estabiliza pH. Sequestra cálcio, magnésio e ferro. Previne degradação.",
-        advantages: "pH estável. Remove íons problemáticos. Previne incompatibilidade. Protege produtos sensíveis.",
-        dosage: "Calda: 50-80 mL/ha"
-    },
-    {
-        name: "TOP CLEAR",
-        category: "adjuvante",
-        badge: "Adjuvante Multifuncional",
-        icon: "fa-pump-soap",
-        color: "#14b8a6",
-        actives: "Emulsões anti-espuma, surfactantes, agentes umectantes e sequestradores de cátions (pH neutro)",
-        targets: "Otimização de aplicações em todas as culturas. Melhor umectação e espalhamento. Redução de espuma. Controle de deriva em pulverização terrestre",
-        action: "Redução da tensão superficial, aumentando espalhamento e cobertura. Umectação superior, permitindo melhor aderência e absorção dos ativos. Ação antiespuma integrada, evitando formação e acúmulo de espuma no tanque. Antideriva moderado, melhorando deposição no alvo. Sequestra íons, estabilizando misturas e melhorando performance da calda.",
-        advantages: "Produto multifuncional (espalhante + antiespuma + estabilizador). pH neutro → altamente compatível com químicos e biológicos. Melhora cobertura e eficiência das aplicações com baixa dose (40 mL/ha). Reduz entupimentos e variações de calda em misturas complexas. Excelente custo–benefício para operações de alto volume de aplicação.",
-        dosage: "Foliar: 40 mL/ha"
-    },
-    {
-        name: "LIMOTECH",
-        category: "adjuvante",
-        badge: "Óleo de Laranja Premium",
-        icon: "fa-lemon",
-        color: "#f97316",
-        actives: "Microemulsão de óleo da casca de laranja, tensoativos siliconados e alta concentração de surfactantes especiais",
-        targets: "Aumentar eficiência de aplicações agrícolas em qualquer cultura. Substituição superior aos óleos tradicionais (minerais, metilados ou vegetais). Maximizar umectação, penetração e fixação dos ativos na folha. Auxiliar no controle de pragas de contato (efeito inseticida natural da laranja)",
-        action: "Duplo mecanismo de ação: combinação de óleo essencial de laranja + tensoativos siliconados. Microemulsão estável: melhora a dispersão da calda e reduz o tamanho das gotas (sem gerar deriva). Aumenta a permeabilidade cuticular, favorecendo entrada rápida de herbicidas, fungicidas e biológicos compatíveis. Ação inseticida leve sobre pragas pequenas e de cutícula fina devido aos compostos terpênicos da casca de laranja. Melhora fixação e adesão, reduzindo perdas por escorrimento.",
-        advantages: "Substitui com superioridade os óleos convencionais (resultado técnico + segurança de calda). Amplia a cobertura e o espalhamento sem aumentar risco de fitotoxidez. Penetração acelerada dos ativos → maior performance de herbicidas e fungicidas. Proporciona melhor deposição em ambiente de alta pressão de palhada ou dossel fechado. Efeito adicional sobre algumas pragas de contato. Maior compatibilidade de calda e estabilidade em misturas complexas. Ideal para sistemas intensivos de soja, milho, algodão e cana.",
-        dosage: "100-200 mL/100L de água"
-    },
-    {
-        name: "CITRO +",
-        category: "adjuvante",
-        badge: "Surfactante Natural",
-        icon: "fa-leaf",
-        color: "#84cc16",
-        actives: "Surfactante à base de óleo de citronela + blend de tensoativos",
-        targets: "Espalhamento, aumento da área de contato, melhoria da deposição",
-        action: "Reduz tensão superficial, melhora a cobertura e facilita dispersão dos ativos sobre a folha.",
-        advantages: "Origem natural. Espalhante eficaz. Aumenta área de contato e deposição. Reduz perdas por escorrimento e lixiviação. Leve ação repelente.",
-        dosage: "Foliar: 100-200 mL/ha"
-    },
-    {
-        name: "DESALOJE",
-        category: "adjuvante",
-        badge: "Desalojante",
-        icon: "fa-wind",
-        color: "#64748b",
-        actives: "Sais, surfactantes e aromas",
-        targets: "Desalojamento de pragas",
-        action: "Sais desidratam cutícula. Surfactantes removem proteção cerosa.",
-        advantages: "Desaloja pragas escondidas. Facilita contato com inseticidas. Ação física.",
-        dosage: "Foliar: 40-70 g/ha"
-    },
-    {
-        name: "TOP AIR",
-        category: "adjuvante",
-        badge: "Adjuvante Antideriva",
-        icon: "fa-wind",
-        color: "#0ea5e9",
-        actives: "Tensioativos iônicos e siliconados, emulsificantes, antiespumantes e hidrocolóides",
-        targets: "Otimização de pulverizações agrícolas aéreas e terrestres",
-        action: "Reduz risco de deriva. Melhora padrão e uniformidade das gotas. Ação antiespuma com pH neutro. Otimiza homogeneidade da calda. Efeito espalhante e emulsificante.",
-        advantages: "Tecnologia HC (hidrocolóides Clear). Redução de deriva. Melhor uniformidade de cobertura. pH neutro ideal para tanque mix. Compatível com aplicações aéreas e terrestres. Efeito antiespumante integrado.",
-        dosage: "Foliar: 0,5-1,0 mL/L ou 0,05-0,10% v/v | Embalagens: 0,1L, 0,5L e 20L"
-    },
-    {
-        name: "CLEARTANK",
-        category: "adjuvante",
-        badge: "Limpeza de Tanques",
-        icon: "fa-spray-can",
-        color: "#10b981",
-        actives: "Alcalinizante, tensoativos, dispersante, hidroxiamina, inibidor de corrosão",
-        targets: "Limpeza de tanques e pulverizadores",
-        action: "Limpeza profunda, desincrustante, solubilizante de resíduos químicos. Proteção anticorrosiva.",
-        advantages: "Reduz fitotoxicidade. Inativa moléculas persistentes. Protege partes metálicas.",
-        dosage: "Dose: 5-10 mL/L ou 0,5-1,0% v/v"
-    },
-    {
-        name: "ESPUMA CONTROL",
-        category: "adjuvante",
-        badge: "Antiespumante Siloxano",
-        icon: "fa-circle-notch",
-        color: "#0891b2",
-        actives: "Solução antiespumante de base siloxânica",
-        targets: "Supressão de espuma em caldas",
-        action: "Elimina espuma formada e previne formação. Ação imediata e persistente.",
-        advantages: "Reduz perdas de ativos na espuma. Melhora homogeneidade. Segurança operacional.",
-        dosage: "Dose: 0,5-1,0 mL/L | Aplicar direto no tanque"
-    },
-
-    // 2. BIOINSETICIDAS
-    {
-        name: "CHROMO B",
-        category: "bioinseticida",
-        badge: "Bactéria Entomopatogênica",
-        icon: "fa-bug",
-        color: "#4f46e5",
-        actives: "Chromobacterium subtsugae (>1×10⁹ UFC/mL)",
-        targets: "Percevejos, Mosca-branca, Pulgões, Ácaros, Tripes, Cigarrinhas",
-        action: "Produz violaceína e quitinases. Age por ingestão. Atividade anti-alimentar.",
-        advantages: "Resistência ao calor. Mortalidade em 1-10 dias. Amplo espectro.",
-        dosage: "Foliar: 300-400 mL/ha | Intervalo: 8-10 dias"
-    },
-    {
-        name: "INSECT CONTROL",
-        category: "bioinseticida",
-        badge: "Isaria + Beauveria + Metarhizium",
-        icon: "fa-spider",
-        color: "#2563eb",
-        actives: "Isaria fumosorosea (>5×10⁹), Beauveria bassiana (>2×10⁹), Metarhizium anisopliae (>2×10⁹)",
-        targets: "Percevejos, Mosca-branca, Pulgões, Cigarrinhas",
-        action: "Infecção por contato. Três fungos entomopatogênicos com efeito sinérgico.",
-        advantages: "Triplo modo de ação. Armazenamento temperatura ambiente. Efeito sinérgico.",
-        dosage: "Foliar: 400 mL/ha"
-    },
-    {
-        name: "CRYSTAL 3D",
-        category: "bioinseticida",
-        badge: "Bt Lagarticida",
-        icon: "fa-worm",
-        color: "#4b5563",
-        actives: "Bacillus thuringiensis kurstaki (>5×10⁸ UFC/mL)",
-        targets: "Lagartas: Spodoptera, Helicoverpa, Anticarsia, Chrysodeixis",
-        action: "Age por ingestão. Proteínas Cry paralisam o aparelho digestivo.",
-        advantages: "Controle específico. Seguro para outros organismos. Sem carência.",
-        dosage: "Foliar: 400 mL/ha | Reaplicar: 8-10 dias"
-    },
-
-    // 3. BIOFUNGICIDAS E CONTROLE DE DOENÇAS
-    {
-        name: "CLEARZEB",
-        category: "biofungicida",
-        badge: "Ação Multissítio",
-        icon: "fa-shield",
-        color: "#10b981",
-        actives: "Ácido Acetil Salicílico + Ácido Peracético + Carbon Quantum Dots",
-        targets: "Ativação de resistência sistêmica. Redução de inóculo na palhada. Doenças foliares",
-        action: "ASA ativa defesas (SAR). Peracético oxida patógenos e reduz inóculo. Quantum Dots melhoram absorção.",
-        advantages: "Diminui inóculo na palhada. Ativa sistema imune vegetal desde V4. Aplicações V4, V8-R1, R5.2. Intervalo 15 dias. Potencializa fungicidas.",
-        dosage: "Foliar: 25-50 mL/ha (V4, V8-R1, R5.2 - Intervalo 15 dias)"
-    },
-    {
-        name: "BIOPROTECT",
-        category: "biofungicida",
-        badge: "Biofungicida/Biobactericida",
-        icon: "fa-shield-alt",
-        color: "#eab308",
-        actives: "Bacillus amyloliquefaciens (2,5×10⁹ UFC/mL)",
-        targets: "DFC's: Antracnose, Cercospora kikuchii, Septoriose glycine, Colletotrichum, Crestamento, Mancha Olho de Rã",
-        action: "Forma biofilme foliar. Produz lipopeptídeos antifúngicos. Promotor de crescimento.",
-        advantages: "Alta estabilidade. Validade 1 ano. Carência zero. Compatível com químicos.",
-        dosage: "Foliar: 300-750 mL/ha"
-    },
-    {
-        name: "TRICHO +",
-        category: "biofungicida",
-        badge: "Controle de Doença do Solo",
-        icon: "fa-bacteria",
-        color: "#16a34a",
-        actives: "Trichoderma harzianum (>2×10⁹ blastósporos/mL)",
-        targets: "Mofo Branco, Rizoctonia, Fusarium, Podridão Cinzenta, Pythium",
-        action: "Parasitismo de fungos. Competição. Antibiose. Degrada parede celular.",
-        advantages: "Maior sanidade radicular. Melhor estande. Promotor de crescimento.",
-        dosage: "Sulco: 150-360 mL/ha | TS Soja: 2 mL/kg | Foliar: 150 mL/ha"
-    },
-
-    // 4. BIONEMATICIDAS
-    {
-        name: "NEMASTOP",
-        category: "bionematicida",
-        badge: "Nematicida Biológico",
-        icon: "fa-shield-virus",
-        color: "#9333ea",
-        actives: "Paecilomyces lilacinus / Purpureocillium lilacinum (>3×10⁹ blastósporos/mL)",
-        targets: "Pratylenchus, Meloidogyne, Heterodera, Rotylenchulus",
-        action: "Coloniza ovos, fêmeas sedentárias e juvenis. Degrada quitina. Reduz população de nematoides no solo.",
-        advantages: "Validade 1 ano sem refrigeração. 90-95% blastósporos estáveis. Ação prolongada. Redução real da população.",
-        dosage: "Sulco: 150 mL/ha | TS Soja: 2 mL/kg | TS Milho: 3-5 mL/kg"
-    },
-
-    // 5. INOCULANTES
-    {
-        name: "BIOBRADY",
-        category: "inoculante",
-        badge: "Inoculante Soja",
-        icon: "fa-dna",
-        color: "#22c55e",
-        actives: "Bradyrhizobium japonicum (>7,5×10⁹ UFC/mL)",
-        targets: "Fixação Biológica de Nitrogênio - Soja",
-        action: "Forma nódulos radiculares eficientes. Fixa N₂ atmosférico.",
-        advantages: "Alta concentração. Cepas selecionadas. Padrão de qualidade.",
-        dosage: "TS Soja: 50 mL/sc 40kg | Sulco/Foliar: 150-200 mL/ha"
-    },
-    {
-        name: "BIOAZO",
-        category: "inoculante",
-        badge: "Inoculante Gramíneas",
-        icon: "fa-seedling",
-        color: "#0f766e",
-        actives: "Azospirillum brasilense AB-V5 + AB-V6 (>3×10⁸ UFC/mL)",
-        targets: "Milho, Trigo, Gramíneas",
-        action: "Fixação de N. Produção de hormônios (auxinas, giberelinas). Associação com raízes.",
-        advantages: "Maior volume radicular. Melhor aproveitamento de nutrientes. Duas cepas sinérgicas.",
-        dosage: "TS Milho: 4-5 mL/kg | TS Trigo: 0,5-1 mL/kg"
-    },
-
-    // 6. BIOESTIMULANTES E ESPECIAIS
-    {
-        name: "BIOPRO N",
-        category: "bioestimulante",
-        badge: "Fixador N Foliar",
-        icon: "fa-cloud",
-        color: "#0ea5e9",
-        actives: "Rhodopseudomonas palustris (1×10⁸) + Methylobacterium symbioticum (1×10⁸)",
-        targets: "Fixação Foliar de Nitrogênio",
-        action: "Coloniza folhas via estômatos. Fixa N₂ atmosférico e converte em amônio. Endofítico foliar.",
-        advantages: "Incremento até 2.088 kg/ha. Tecnologia exclusiva mundial. Reduz dependência de N do solo.",
-        dosage: "Foliar: 400 mL/ha entre V4-V10 | Aplicar cedo da manhã"
-    },
-    {
-        name: "PROGENESIS X",
-        category: "bioestimulante",
-        badge: "RNA's + Nutrientes",
-        icon: "fa-dna",
-        color: "#ec4899",
-        actives: "RNA's (30 Small Nucleotídeos), Aminoácidos, Proteínas. N (4,1%); P₂O₅ (2%); K₂O (3%); B (0,1%); Co (0,01%); Cu (0,3%); Fe (0,3%); Mn (1%); Mo (0,05%); S (2,3%)",
-        targets: "Ativação metabólica e nutricional",
-        action: "RNA's ativam expressão gênica. Aminoácidos livres. Nutrientes prontamente disponíveis.",
-        advantages: "Estimula crescimento. Aumenta resistência. Ativação gênica rápida. Rica fonte de N orgânico.",
-        dosage: "Foliar: 200-400 mL/ha"
-    },
-    {
-        name: "SULFORPRO",
-        category: "bioestimulante",
-        badge: "Enxofre Especial",
-        icon: "fa-flask",
-        color: "#fbbf24",
-        actives: "Enxofre na forma de sulfonato (S 10%)",
-        targets: "Fornecimento de enxofre e ativação metabólica",
-        action: "Enxofre na forma de sulfonato altamente disponível. Ativa síntese de proteínas e aminoácidos.",
-        advantages: "Alta solubilidade. Rápida absorção. Essencial para síntese proteica. Melhora qualidade.",
-        dosage: "Foliar: 200-400 mL/ha"
-    },
-    {
-        name: "FLOW",
-        category: "bioestimulante",
-        badge: "Cobre Nanoparticulado",
-        icon: "fa-shield-heart",
-        color: "#d97706",
-        actives: "Cobre nutricional nanoparticulado",
-        targets: "Ativador de defesas. Fungicida/bactericida. Redução de estresse",
-        action: "Cobre nanoparticulado de alta disponibilidade. Ativa enzimas de defesa. Aumenta resistência a doenças e pragas. Seguro fisiológico da lavoura.",
-        advantages: "Compatível com biológicos. Ativador de enzimas. Aumenta resistência a estresses. Ação fungicida e bactericida auxiliar. Não interfere na microbiota benéfica.",
-        dosage: "Foliar: Consultar recomendação técnica"
-    },
-    {
-        name: "CHARGE +",
-        category: "bioestimulante",
-        badge: "NPK Potencializado",
-        icon: "fa-bolt",
-        color: "#22c55e",
-        actives: "N 10%, P₂O₅ 6%, K₂O 3% + Aminoácidos",
-        targets: "Vigor e recuperação pós-estresse",
-        action: "Estimula metabolismo e crescimento. Melhora absorção e translocação de nutrientes. Reduz impactos de estresses.",
-        advantages: "Recuperação rápida. Favorece equilíbrio nutricional. Compatível com defensivos.",
-        dosage: "Foliar: aplicação em todas fases vegetativas/reprodutivas"
-    },
-    {
-        name: "AGROTHOR",
-        category: "bioestimulante",
-        badge: "Zn + N + Extrato de Algas",
-        icon: "fa-seedling",
-        color: "#14b8a6",
-        actives: "Zn 5%, N 1% + Extrato de algas",
-        targets: "Estímulo metabólico e performance produtiva",
-        action: "Alta carga nutricional equilibrada. Ativa síntese proteica, hormônios e carboidratos. Translocação eficiente.",
-        advantages: "Liberação equilibrada. Ativação metabólica. Melhor aproveitamento de nutrientes.",
-        dosage: "Milho/Soja/Arroz: 0,15-0,6 L/ha | Algodão/Café: 0,3-0,8 L/ha | Cana: 0,4-1,2 L/ha"
-    },
-    {
-        name: "BORO+",
-        category: "bioestimulante",
-        badge: "B + Cu + Mo Concentrado",
-        icon: "fa-flower",
-        color: "#a855f7",
-        actives: "B 9,5%, Cu 0,5%, Mo 0,2%",
-        targets: "Suporte reprodutivo com alta eficiência",
-        action: "Essencial para fecundação e transporte de açúcares. Suporte enzimático e fixação de N. Promove formação de pólen e grãos.",
-        advantages: "Nutrientes quelatados. Equilíbrio reprodutivo. Seguro e eficiente.",
-        dosage: "Soja: 1-2 L/ha (V2 e R2) | Feijão: 1-2 L/ha (pré-flor e flor) | Outras: consultar técnico"
-    },
-    {
-        name: "COMONI PLUS",
-        category: "bioestimulante",
-        badge: "Co + Mo + Ni + Algas",
-        icon: "fa-microscope",
-        color: "#8b5cf6",
-        actives: "Co 1%, Mo 10%, Ni 1% + Extrato de algas",
-        targets: "Fixação biológica e metabolismo do N",
-        action: "Suplementação essencial para FBN. Estimula fixação biológica, ativação enzimática e melhor aproveitamento de N.",
-        advantages: "Alta solubilidade. Compatível com inoculantes. Reduz perdas de estresse.",
-        dosage: "TS Soja/Feijão: 0,2 L/ha | TS Milho: 0,1 L/t | Foliar: 0,1-0,4 L/ha"
-    },
-    {
-        name: "MIX XR",
-        category: "bioestimulante",
-        badge: "Mix de Bacillus + Azospirillum",
-        icon: "fa-seedling",
-        color: "#db2777",
-        actives: "7 Microrganismos (Bacillus subtilis, B. licheniformis, B. polymyxa, B. megaterium, Saccharomyces, Azospirillum, Pseudomonas) + Vitaminas B",
-        targets: "Enraizamento e desenvolvimento inicial",
-        action: "Enraizador potente. Solubiliza P e K. Fixa N. Produz hormônios vegetais.",
-        advantages: "Maior velocidade de emergência. Equilíbrio da biota. Sistema radicular robusto.",
-        dosage: "Sulco: 150-200 mL/ha | TS Soja: 2 mL/kg | TS Milho: 4-5 mL/kg"
-    },
-    {
-        name: "CACTUS",
-        category: "bioestimulante",
-        badge: "Anti-Estresse Hídrico e Térmico",
-        icon: "fa-sun",
-        color: "#f97316",
-        actives: "Bacillus aryabhattai (>1×10⁹ UFC/mL)",
-        targets: "Estresse Hídrico, Térmico e Oxidativo",
-        action: "Biofilme (efeito esponja) nas raízes. Controla estômatos. Produz enzimas antioxidantes.",
-        advantages: "Reduz evapotranspiração. Stay Green. Incremento médio 300 kg/ha. Tolerância a seca.",
-        dosage: "TS Milho: 4 mL/kg | Sulco: 100-150 mL/ha | TS Soja: 1-2 mL/kg"
-    },
-    {
-        name: "SOLUBILIZA",
-        category: "bioestimulante",
-        badge: "Solubilizador NPK",
-        icon: "fa-atom",
-        color: "#dc2626",
-        actives: "Pseudomonas fluorescens (>2×10⁹), Bradyrhizobium (>1×10⁹), Azospirillum (>1×10⁸)",
-        targets: "Solubilização de P e K. Fixação de N",
-        action: "Solubiliza fósforo e potássio. Fixação associativa de N. Promoção radicular.",
-        advantages: "Alta compatibilidade com Bradyrhizobium. Economia de fertilizantes. Rizosfera ativa.",
-        dosage: "TS: 1-5 mL/kg | Sulco: 150 mL/ha"
-    }
-];
-
-        let currentFilter = 'todos';
-
-        function renderProducts(filter = 'todos', searchTerm = '') {
-            const container = document.getElementById('productsContainer');
-            
-            let filtered = products;
-            if (filter !== 'todos') {
-                filtered = products.filter(p => p.category === filter);
-            }
-            if (searchTerm) {
-                filtered = filtered.filter(p => 
-                    p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    p.targets.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    p.actives.toLowerCase().includes(searchTerm.toLowerCase())
-                );
-            }
-
-            const categories = {
-                adjuvante: { title: 'ADJUVANTES E CONDICIONADORES DE CALDA', icon: 'fa-droplet' },
-                bioinseticida: { title: 'BIOINSETICIDAS', icon: 'fa-bug' },
-                biofungicida: { title: 'BIOFUNGICIDAS E CONTROLE DE DOENÇAS', icon: 'fa-shield-alt' },
-                bionematicida: { title: 'BIONEMATICIDAS', icon: 'fa-shield-virus' },
-                inoculante: { title: 'INOCULANTES', icon: 'fa-dna' },
-                bioestimulante: { title: 'BIOESTIMULANTES E ESPECIAIS', icon: 'fa-star' }
-            };
-
-            let html = '';
-            Object.keys(categories).forEach(catKey => {
-                const catProducts = filtered.filter(p => p.category === catKey);
-                if (catProducts.length > 0) {
-                    html += `
-                        <section class="mb-12">
-                            <div class="category-title">
-                                <i class="fas ${categories[catKey].icon}"></i>
-                                ${categories[catKey].title}
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                ${catProducts.map(p => `
-                                    <div class="product-card" style="border-top-color: ${p.color}">
-                                        <div class="p-6">
-                                            <div class="flex justify-between items-start mb-4">
-                                                <h3 class="text-2xl font-bold text-gray-900">${p.name}</h3>
-                                                <span class="bg-gray-100 px-3 py-1 rounded-full text-xs font-bold" style="color: ${p.color}">
-                                                    ${p.badge}
-                                                </span>
-                                            </div>
-                                            
-                                            <div class="space-y-3 text-sm">
-                                                <div>
-                                                    <span class="info-label" style="color: ${p.color}">
-                                                        <i class="fas fa-flask"></i> Ativos
-                                                    </span>
-                                                    <p class="text-gray-700">${p.actives}</p>
-                                                </div>
-                                                
-                                                <div>
-                                                    <span class="info-label" style="color: ${p.color}">
-                                                        <i class="fas fa-crosshairs"></i> Alvos
-                                                    </span>
-                                                    <p class="text-gray-700">${p.targets}</p>
-                                                </div>
-                                                
-                                                <div>
-                                                    <span class="info-label" style="color: ${p.color}">
-                                                        <i class="fas fa-cogs"></i> Modo de Ação
-                                                    </span>
-                                                    <p class="text-gray-700">${p.action}</p>
-                                                </div>
-                                                
-                                                <div>
-                                                    <span class="info-label" style="color: ${p.color}">
-                                                        <i class="fas fa-star"></i> Vantagens
-                                                    </span>
-                                                    <p class="text-gray-700">${p.advantages}</p>
-                                                </div>
-                                            </div>
-
-                                            <div class="info-box mt-4">
-                                                <span class="info-label">
-                                                    <i class="fas fa-tint"></i> Dosagem Recomendada
-                                                </span>
-                                                <p class="text-sm text-gray-800 font-semibold">${p.dosage}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </section>
-                    `;
-                }
-            });
-
-            container.innerHTML = html || '<p class="text-center text-gray-500 text-xl">Nenhum produto encontrado</p>';
-        }
-
-        function filterCategory(category) {
-            currentFilter = category;
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            renderProducts(category, document.getElementById('searchInput').value);
-        }
-
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            renderProducts(currentFilter, e.target.value);
-        });
-
-        // Initialize
-        renderProducts();
-    </script>
-
-    <!-- Footer -->
-    <footer class="premium-header text-white py-8 px-6 mt-16">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-                <div class="text-center md:text-left">
-                    <h3 class="text-xl font-bold mb-2">Clear Agro / Bionéctar</h3>
-                    <p class="text-white/80 text-sm">Tecnologia de Aplicação e Controle Biológico</p>
-                    <p class="text-white/60 text-xs mt-2">© 2026 - Todos os direitos reservados</p>
-                </div>
-                <div class="text-center">
-                    <a href="https://wa.me/5567999477572" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full flex items-center gap-3 transition-all shadow-lg hover:shadow-xl hover:scale-105">
-                        <i class="fab fa-whatsapp text-2xl"></i>
-                        <div class="text-left">
-                            <div class="text-xs opacity-90">Fale Conosco</div>
-                            <div class="font-bold">(67) 99947-7572</div>
-                        </div>
+        <section class="mx-auto grid max-w-7xl gap-10 px-5 pb-16 pt-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            <div>
+                <span class="inline-flex rounded-full bg-white/15 px-4 py-2 text-sm font-extrabold text-white/90">
+                    Gestão completa: estoque, vendas, clientes, agenda e relatórios
+                </span>
+                <h2 class="mt-6 text-4xl font-black leading-tight md:text-6xl">
+                    Controle sua perfumaria, salão ou loja de beleza em uma única tela.
+                </h2>
+                <p class="mt-5 max-w-2xl text-lg text-white/85">
+                    Protótipo funcional com catálogo inteligente, carrinho de PDV, alertas de estoque, CRM, agenda de serviços e indicadores financeiros para acelerar a operação da loja.
+                </p>
+                <div class="mt-8 flex flex-wrap gap-3">
+                    <a href="#pdv" class="rounded-full bg-white px-6 py-3 font-black text-rose-700 shadow-2xl hover:bg-rose-50">
+                        <i class="fa-solid fa-cash-register mr-2"></i>Abrir PDV
+                    </a>
+                    <a href="#estoque" class="rounded-full border border-white/40 px-6 py-3 font-black text-white hover:bg-white/10">
+                        <i class="fa-solid fa-boxes-stacked mr-2"></i>Ver estoque
                     </a>
                 </div>
             </div>
+            <div class="glass-card rounded-[2rem] p-6 text-gray-900">
+                <div class="flex items-center justify-between border-b border-gray-100 pb-4">
+                    <div>
+                        <p class="text-sm font-bold uppercase tracking-widest text-rose-500">Resumo do dia</p>
+                        <h3 class="text-2xl font-black">Loja Bela Essência</h3>
+                    </div>
+                    <div class="rounded-2xl bg-rose-100 p-4 text-rose-600">
+                        <i class="fa-solid fa-chart-line text-2xl"></i>
+                    </div>
+                </div>
+                <div class="mt-5 grid grid-cols-2 gap-4" id="heroMetrics"></div>
+                <div class="mt-5 rounded-3xl bg-gray-950 p-5 text-white">
+                    <div class="mb-3 flex items-center justify-between">
+                        <p class="font-black">Próximas ações</p>
+                        <span class="rounded-full bg-emerald-400/20 px-3 py-1 text-xs font-black text-emerald-200">Ao vivo</span>
+                    </div>
+                    <div id="actionList" class="space-y-3 text-sm text-white/80"></div>
+                </div>
+            </div>
+        </section>
+    </header>
+
+    <main class="mx-auto max-w-7xl px-5 py-10">
+        <section id="dashboard" class="mb-10">
+            <div class="mb-5 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+                <div>
+                    <p class="text-sm font-black uppercase tracking-[0.25em] text-rose-500">Painel gerencial</p>
+                    <h2 class="text-3xl font-black text-gray-950">Indicadores principais</h2>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button class="module-tab active rounded-full px-4 py-2 text-sm font-black" onclick="showModule('overview', this)">Visão geral</button>
+                    <button class="module-tab rounded-full bg-white px-4 py-2 text-sm font-black text-gray-700 shadow" onclick="showModule('financeiro', this)">Financeiro</button>
+                    <button class="module-tab rounded-full bg-white px-4 py-2 text-sm font-black text-gray-700 shadow" onclick="showModule('operacao', this)">Operação</button>
+                </div>
+            </div>
+            <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4" id="dashboardCards"></div>
+        </section>
+
+        <section id="pdv" class="grid gap-6 lg:grid-cols-[1fr_380px]">
+            <div class="glass-card rounded-[2rem] p-5 md:p-7">
+                <div class="mb-6 flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
+                    <div>
+                        <p class="text-sm font-black uppercase tracking-[0.25em] text-rose-500">PDV e catálogo</p>
+                        <h2 class="text-3xl font-black">Produtos de beleza</h2>
+                    </div>
+                    <div class="relative w-full xl:max-w-sm">
+                        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <input id="searchInput" type="search" placeholder="Buscar por produto, marca ou benefício..." class="w-full rounded-2xl border border-gray-200 bg-white py-3 pl-11 pr-4 font-semibold outline-none focus:border-rose-400 focus:ring-4 focus:ring-rose-100">
+                    </div>
+                </div>
+                <div id="categoryFilters" class="mb-6 flex flex-wrap gap-2"></div>
+                <div id="productGrid" class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3"></div>
+            </div>
+
+            <aside class="glass-card sticky top-4 h-fit rounded-[2rem] p-5" aria-label="Carrinho de vendas">
+                <div class="mb-4 flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-black uppercase tracking-widest text-rose-500">Checkout</p>
+                        <h2 class="text-2xl font-black">Carrinho</h2>
+                    </div>
+                    <button onclick="clearCart()" class="rounded-full bg-gray-100 px-3 py-2 text-xs font-black text-gray-600 hover:bg-rose-100 hover:text-rose-700">Limpar</button>
+                </div>
+                <div id="cartItems" class="max-h-[26rem] space-y-3 overflow-auto pr-1"></div>
+                <div class="mt-5 space-y-3 rounded-3xl bg-gray-50 p-4">
+                    <div class="flex justify-between text-sm font-bold text-gray-500"><span>Subtotal</span><span id="cartSubtotal">R$ 0,00</span></div>
+                    <div class="flex justify-between text-sm font-bold text-gray-500"><span>Desconto fidelidade</span><span id="cartDiscount">R$ 0,00</span></div>
+                    <div class="flex justify-between border-t border-gray-200 pt-3 text-xl font-black"><span>Total</span><span id="cartTotal">R$ 0,00</span></div>
+                    <label class="block text-sm font-extrabold text-gray-700" for="clientSelect">Cliente</label>
+                    <select id="clientSelect" class="w-full rounded-2xl border border-gray-200 bg-white p-3 font-semibold"></select>
+                    <button onclick="finishSale()" class="w-full rounded-2xl bg-gradient-to-r from-rose-600 to-violet-600 py-4 font-black text-white shadow-xl hover:opacity-95">
+                        <i class="fa-solid fa-check mr-2"></i>Finalizar venda
+                    </button>
+                </div>
+            </aside>
+        </section>
+
+        <section id="estoque" class="mt-10 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+            <div class="glass-card rounded-[2rem] p-6">
+                <div class="mb-5 flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-black uppercase tracking-[0.25em] text-rose-500">Estoque</p>
+                        <h2 class="text-3xl font-black">Reposição inteligente</h2>
+                    </div>
+                    <button onclick="simulateRestock()" class="rounded-full bg-gray-950 px-4 py-2 text-sm font-black text-white hover:bg-rose-700">
+                        Simular compra
+                    </button>
+                </div>
+                <div id="stockTable" class="overflow-hidden rounded-3xl border border-gray-100 bg-white"></div>
+            </div>
+
+            <div class="grid gap-6">
+                <div id="clientes" class="glass-card rounded-[2rem] p-6">
+                    <div class="mb-5 flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-black uppercase tracking-[0.25em] text-rose-500">CRM</p>
+                            <h2 class="text-3xl font-black">Clientes e fidelidade</h2>
+                        </div>
+                        <button onclick="addLead()" class="rounded-full bg-rose-100 px-4 py-2 text-sm font-black text-rose-700 hover:bg-rose-200">Novo lead</button>
+                    </div>
+                    <div id="clientList" class="grid gap-3 md:grid-cols-2"></div>
+                </div>
+
+                <div class="glass-card rounded-[2rem] p-6">
+                    <div class="mb-5 flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-black uppercase tracking-[0.25em] text-rose-500">Agenda</p>
+                            <h2 class="text-3xl font-black">Serviços e consultoria</h2>
+                        </div>
+                        <span class="rounded-full bg-violet-100 px-4 py-2 text-sm font-black text-violet-700">Hoje</span>
+                    </div>
+                    <div id="scheduleList" class="space-y-3"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mt-10 grid gap-6 lg:grid-cols-3">
+            <div class="glass-card rounded-[2rem] p-6 lg:col-span-2">
+                <div class="mb-5">
+                    <p class="text-sm font-black uppercase tracking-[0.25em] text-rose-500">Relatórios</p>
+                    <h2 class="text-3xl font-black">Vendas recentes</h2>
+                </div>
+                <div id="salesHistory" class="space-y-3"></div>
+            </div>
+            <div class="rounded-[2rem] bg-gray-950 p-6 text-white shadow-2xl">
+                <p class="text-sm font-black uppercase tracking-[0.25em] text-rose-300">Configuração</p>
+                <h2 class="mt-2 text-3xl font-black">Módulos do sistema</h2>
+                <ul class="mt-5 space-y-4 text-sm text-white/80">
+                    <li class="flex gap-3"><i class="fa-solid fa-circle-check mt-1 text-emerald-300"></i><span>Cadastro de produtos com preço, margem, estoque mínimo e categoria.</span></li>
+                    <li class="flex gap-3"><i class="fa-solid fa-circle-check mt-1 text-emerald-300"></i><span>PDV com carrinho, descontos automáticos e histórico de vendas.</span></li>
+                    <li class="flex gap-3"><i class="fa-solid fa-circle-check mt-1 text-emerald-300"></i><span>CRM com ticket médio, preferências e programa de pontos.</span></li>
+                    <li class="flex gap-3"><i class="fa-solid fa-circle-check mt-1 text-emerald-300"></i><span>Agenda para maquiagem, limpeza de pele, consultoria capilar e retirada de pedidos.</span></li>
+                    <li class="flex gap-3"><i class="fa-solid fa-circle-check mt-1 text-emerald-300"></i><span>Base preparada para evoluir para backend, login, emissão fiscal e integração WhatsApp.</span></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <div id="saleModal" class="modal fixed inset-0 z-50 flex items-center justify-center bg-gray-950/70 p-5">
+        <div class="w-full max-w-md rounded-[2rem] bg-white p-7 text-center shadow-2xl">
+            <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-3xl text-emerald-600">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h2 class="text-2xl font-black">Venda registrada!</h2>
+            <p id="saleMessage" class="mt-3 text-gray-600"></p>
+            <button onclick="closeModal()" class="mt-6 w-full rounded-2xl bg-gray-950 py-3 font-black text-white hover:bg-rose-700">Continuar vendendo</button>
+        </div>
+    </div>
+
+    <footer class="mt-10 bg-gray-950 px-5 py-10 text-white">
+        <div class="mx-auto flex max-w-7xl flex-col gap-5 md:flex-row md:items-center md:justify-between">
+            <div>
+                <h2 class="text-2xl font-black">BeautyFlow</h2>
+                <p class="text-white/60">Sistema demonstrativo para lojas de cosméticos, perfumarias e negócios de beleza.</p>
+            </div>
+            <a href="https://wa.me/5500000000000" class="rounded-full bg-emerald-500 px-6 py-3 font-black text-white hover:bg-emerald-600">
+                <i class="fa-brands fa-whatsapp mr-2"></i>Atendimento via WhatsApp
+            </a>
         </div>
     </footer>
 
+    <script>
+        const money = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+        const state = {
+            category: 'Todos',
+            cart: [],
+            sales: JSON.parse(localStorage.getItem('beautyflow_sales') || '[]')
+        };
+
+        const products = [
+            { id: 1, name: 'Sérum Vitamina C Glow', brand: 'DermaLuz', category: 'Skincare', price: 89.90, cost: 42.00, stock: 18, min: 8, points: 9, benefit: 'Luminosidade e uniformização', icon: 'fa-droplet' },
+            { id: 2, name: 'Protetor Solar FPS 60', brand: 'SolarBelle', category: 'Skincare', price: 74.90, cost: 35.00, stock: 7, min: 10, points: 7, benefit: 'Toque seco e controle de oleosidade', icon: 'fa-sun' },
+            { id: 3, name: 'Máscara Capilar Nutrição', brand: 'HairBloom', category: 'Cabelos', price: 64.50, cost: 28.00, stock: 23, min: 9, points: 6, benefit: 'Reparação profunda para fios ressecados', icon: 'fa-pump-soap' },
+            { id: 4, name: 'Óleo Finalizador Argan', brand: 'HairBloom', category: 'Cabelos', price: 49.90, cost: 19.00, stock: 4, min: 7, points: 5, benefit: 'Brilho, antifrizz e proteção térmica', icon: 'fa-wand-magic-sparkles' },
+            { id: 5, name: 'Base Matte Alta Cobertura', brand: 'MakePro', category: 'Maquiagem', price: 69.90, cost: 31.00, stock: 15, min: 6, points: 7, benefit: 'Acabamento profissional por até 12h', icon: 'fa-palette' },
+            { id: 6, name: 'Batom Hidratante Rose', brand: 'MakePro', category: 'Maquiagem', price: 32.90, cost: 12.00, stock: 32, min: 12, points: 3, benefit: 'Cor intensa com ácido hialurônico', icon: 'fa-kiss-wink-heart' },
+            { id: 7, name: 'Perfume Floral Essencial', brand: 'AromaBella', category: 'Perfumaria', price: 129.90, cost: 58.00, stock: 11, min: 5, points: 13, benefit: 'Notas florais, musk e baunilha', icon: 'fa-spray-can-sparkles' },
+            { id: 8, name: 'Body Splash Frutas Vermelhas', brand: 'AromaBella', category: 'Perfumaria', price: 54.90, cost: 20.00, stock: 20, min: 10, points: 5, benefit: 'Fragrância leve para uso diário', icon: 'fa-bottle-droplet' },
+            { id: 9, name: 'Kit Manicure Spa', brand: 'NailCare', category: 'Unhas', price: 44.90, cost: 17.00, stock: 9, min: 8, points: 4, benefit: 'Cutículas hidratadas e esmaltação duradoura', icon: 'fa-hand-sparkles' }
+        ];
+
+        const clients = [
+            { id: 1, name: 'Ana Paula', tier: 'Ouro', points: 420, preference: 'Skincare', avgTicket: 168.70 },
+            { id: 2, name: 'Bruna Lima', tier: 'Prata', points: 210, preference: 'Cabelos', avgTicket: 94.40 },
+            { id: 3, name: 'Camila Torres', tier: 'Diamante', points: 860, preference: 'Perfumaria', avgTicket: 238.90 },
+            { id: 4, name: 'Marina Costa', tier: 'Bronze', points: 80, preference: 'Maquiagem', avgTicket: 72.30 }
+        ];
+
+        const schedules = [
+            { time: '09:00', client: 'Ana Paula', service: 'Consultoria de rotina facial', status: 'Confirmado' },
+            { time: '11:30', client: 'Camila Torres', service: 'Retirada de kit presente', status: 'Preparar' },
+            { time: '15:00', client: 'Marina Costa', service: 'Teste de base e maquiagem', status: 'Confirmado' },
+            { time: '17:20', client: 'Bruna Lima', service: 'Diagnóstico capilar', status: 'Pendente' }
+        ];
+
+        const categories = ['Todos', ...new Set(products.map(product => product.category))];
+
+        function persistSales() {
+            localStorage.setItem('beautyflow_sales', JSON.stringify(state.sales.slice(0, 10)));
+        }
+
+        function showModule(module, element) {
+            document.querySelectorAll('.module-tab').forEach(tab => tab.classList.remove('active'));
+            element.classList.add('active');
+            renderDashboard(module);
+        }
+
+        function productMargin(product) {
+            return ((product.price - product.cost) / product.price) * 100;
+        }
+
+        function cartTotals() {
+            const subtotal = state.cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+            const discount = subtotal >= 250 ? subtotal * 0.08 : subtotal >= 150 ? subtotal * 0.05 : 0;
+            return { subtotal, discount, total: subtotal - discount };
+        }
+
+        function renderHero() {
+            const totals = cartTotals();
+            const todayRevenue = state.sales.reduce((sum, sale) => sum + sale.total, 0) + 1847.50;
+            const lowStock = products.filter(product => product.stock <= product.min).length;
+            const metrics = [
+                { label: 'Faturamento', value: money.format(todayRevenue), icon: 'fa-sack-dollar', color: 'text-emerald-600 bg-emerald-100' },
+                { label: 'Itens no carrinho', value: state.cart.reduce((sum, item) => sum + item.qty, 0), icon: 'fa-basket-shopping', color: 'text-rose-600 bg-rose-100' },
+                { label: 'Ticket atual', value: money.format(totals.total), icon: 'fa-receipt', color: 'text-violet-600 bg-violet-100' },
+                { label: 'Alertas', value: lowStock, icon: 'fa-triangle-exclamation', color: 'text-amber-600 bg-amber-100' }
+            ];
+            document.getElementById('heroMetrics').innerHTML = metrics.map(metric => `
+                <div class="rounded-3xl bg-white p-4 shadow-sm">
+                    <div class="mb-3 inline-flex rounded-2xl ${metric.color} p-3"><i class="fa-solid ${metric.icon}"></i></div>
+                    <p class="text-xs font-black uppercase tracking-widest text-gray-400">${metric.label}</p>
+                    <p class="mt-1 text-xl font-black">${metric.value}</p>
+                </div>
+            `).join('');
+            document.getElementById('actionList').innerHTML = [
+                `${lowStock} produtos abaixo do estoque mínimo`,
+                '3 clientes elegíveis para campanha de recompra',
+                'Agenda com 4 atendimentos para hoje'
+            ].map(action => `<div class="flex items-center gap-3"><i class="fa-solid fa-bolt text-rose-300"></i><span>${action}</span></div>`).join('');
+        }
+
+        function renderDashboard(module = 'overview') {
+            const inventoryValue = products.reduce((sum, product) => sum + product.cost * product.stock, 0);
+            const potentialRevenue = products.reduce((sum, product) => sum + product.price * product.stock, 0);
+            const averageMargin = products.reduce((sum, product) => sum + productMargin(product), 0) / products.length;
+            const saleCount = state.sales.length + 18;
+            const cardSets = {
+                overview: [
+                    { label: 'Faturamento potencial', value: money.format(potentialRevenue), hint: 'Com estoque atual', icon: 'fa-chart-simple' },
+                    { label: 'Produtos ativos', value: products.length, hint: `${categories.length - 1} categorias cadastradas`, icon: 'fa-box-open' },
+                    { label: 'Clientes cadastrados', value: clients.length, hint: 'Com programa de pontos', icon: 'fa-users' },
+                    { label: 'Agenda do dia', value: schedules.length, hint: 'Serviços e retiradas', icon: 'fa-calendar-check' }
+                ],
+                financeiro: [
+                    { label: 'Valor em estoque', value: money.format(inventoryValue), hint: 'Custo de aquisição', icon: 'fa-warehouse' },
+                    { label: 'Margem média', value: `${averageMargin.toFixed(1)}%`, hint: 'Baseada no preço de venda', icon: 'fa-percent' },
+                    { label: 'Vendas do dia', value: saleCount, hint: 'Inclui vendas simuladas', icon: 'fa-cash-register' },
+                    { label: 'Descontos ativos', value: '5% / 8%', hint: 'Por valor do carrinho', icon: 'fa-tags' }
+                ],
+                operacao: [
+                    { label: 'Ruptura crítica', value: products.filter(product => product.stock <= product.min).length, hint: 'Comprar nas próximas 48h', icon: 'fa-triangle-exclamation' },
+                    { label: 'Itens em estoque', value: products.reduce((sum, product) => sum + product.stock, 0), hint: 'Unidades disponíveis', icon: 'fa-layer-group' },
+                    { label: 'Serviços confirmados', value: schedules.filter(item => item.status === 'Confirmado').length, hint: 'Hoje', icon: 'fa-user-check' },
+                    { label: 'Leads para nutrir', value: 12, hint: 'Campanhas por WhatsApp', icon: 'fa-comments' }
+                ]
+            };
+
+            document.getElementById('dashboardCards').innerHTML = cardSets[module].map(card => `
+                <article class="glass-card rounded-3xl p-5">
+                    <div class="mb-4 flex items-center justify-between">
+                        <div class="rounded-2xl bg-rose-100 p-3 text-rose-600"><i class="fa-solid ${card.icon}"></i></div>
+                        <span class="status-pill bg-emerald-100 text-emerald-700"><i class="fa-solid fa-arrow-trend-up"></i>OK</span>
+                    </div>
+                    <p class="text-sm font-black uppercase tracking-widest text-gray-400">${card.label}</p>
+                    <h3 class="mt-2 text-3xl font-black">${card.value}</h3>
+                    <p class="mt-2 text-sm font-semibold text-gray-500">${card.hint}</p>
+                </article>
+            `).join('');
+            renderHero();
+        }
+
+        function renderCategories() {
+            document.getElementById('categoryFilters').innerHTML = categories.map(category => `
+                <button class="category-chip ${state.category === category ? 'active' : 'bg-white text-gray-700 shadow'} rounded-full px-4 py-2 text-sm font-black" onclick="selectCategory('${category}')">
+                    ${category}
+                </button>
+            `).join('');
+        }
+
+        function renderProducts() {
+            const query = document.getElementById('searchInput')?.value?.toLowerCase() || '';
+            const filtered = products.filter(product => {
+                const matchesCategory = state.category === 'Todos' || product.category === state.category;
+                const matchesSearch = [product.name, product.brand, product.benefit, product.category].join(' ').toLowerCase().includes(query);
+                return matchesCategory && matchesSearch;
+            });
+
+            document.getElementById('productGrid').innerHTML = filtered.map(product => {
+                const stockStatus = product.stock <= product.min ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-700';
+                const stockLabel = product.stock <= product.min ? 'Reposição' : 'Disponível';
+                return `
+                    <article class="product-card rounded-3xl bg-white p-5 shadow-sm">
+                        <div class="mb-4 flex items-start justify-between gap-3">
+                            <div class="rounded-2xl bg-rose-50 p-4 text-2xl text-rose-600"><i class="fa-solid ${product.icon}"></i></div>
+                            <span class="status-pill ${stockStatus}"><i class="fa-solid fa-circle"></i>${stockLabel}</span>
+                        </div>
+                        <p class="text-xs font-black uppercase tracking-widest text-violet-500">${product.brand} • ${product.category}</p>
+                        <h3 class="mt-2 text-xl font-black text-gray-950">${product.name}</h3>
+                        <p class="mt-2 min-h-12 text-sm font-semibold text-gray-500">${product.benefit}</p>
+                        <div class="mt-4 flex items-end justify-between">
+                            <div>
+                                <p class="text-xs font-bold text-gray-400">Estoque: ${product.stock} un.</p>
+                                <p class="text-2xl font-black text-gray-950">${money.format(product.price)}</p>
+                            </div>
+                            <button onclick="addToCart(${product.id})" class="rounded-2xl bg-gray-950 px-4 py-3 font-black text-white hover:bg-rose-700">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </article>
+                `;
+            }).join('') || '<p class="col-span-full rounded-3xl bg-white p-8 text-center font-bold text-gray-500">Nenhum produto encontrado.</p>';
+        }
+
+        function selectCategory(category) {
+            state.category = category;
+            renderCategories();
+            renderProducts();
+        }
+
+        function addToCart(id) {
+            const product = products.find(item => item.id === id);
+            const existing = state.cart.find(item => item.id === id);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                state.cart.push({ ...product, qty: 1 });
+            }
+            renderCart();
+        }
+
+        function updateQty(id, delta) {
+            const item = state.cart.find(product => product.id === id);
+            if (!item) return;
+            item.qty += delta;
+            if (item.qty <= 0) {
+                state.cart = state.cart.filter(product => product.id !== id);
+            }
+            renderCart();
+        }
+
+        function clearCart() {
+            state.cart = [];
+            renderCart();
+        }
+
+        function renderCart() {
+            const cartItems = document.getElementById('cartItems');
+            if (!state.cart.length) {
+                cartItems.innerHTML = '<div class="rounded-3xl bg-gray-50 p-6 text-center text-sm font-bold text-gray-500">Adicione produtos ao carrinho para iniciar uma venda.</div>';
+            } else {
+                cartItems.innerHTML = state.cart.map(item => `
+                    <div class="rounded-3xl border border-gray-100 bg-white p-4 shadow-sm">
+                        <div class="flex justify-between gap-3">
+                            <div>
+                                <p class="font-black">${item.name}</p>
+                                <p class="text-xs font-bold text-gray-400">${item.brand} • ${money.format(item.price)}</p>
+                            </div>
+                            <p class="font-black">${money.format(item.price * item.qty)}</p>
+                        </div>
+                        <div class="mt-3 flex items-center justify-between">
+                            <div class="flex items-center overflow-hidden rounded-full border border-gray-200">
+                                <button onclick="updateQty(${item.id}, -1)" class="px-3 py-1 font-black hover:bg-gray-100">−</button>
+                                <span class="px-3 py-1 text-sm font-black">${item.qty}</span>
+                                <button onclick="updateQty(${item.id}, 1)" class="px-3 py-1 font-black hover:bg-gray-100">+</button>
+                            </div>
+                            <span class="text-xs font-black text-rose-600">+${item.points * item.qty} pontos</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            const totals = cartTotals();
+            document.getElementById('cartSubtotal').textContent = money.format(totals.subtotal);
+            document.getElementById('cartDiscount').textContent = `-${money.format(totals.discount)}`;
+            document.getElementById('cartTotal').textContent = money.format(totals.total);
+            renderHero();
+        }
+
+        function renderClients() {
+            document.getElementById('clientSelect').innerHTML = clients.map(client => `<option value="${client.id}">${client.name} • ${client.tier}</option>`).join('');
+            document.getElementById('clientList').innerHTML = clients.map(client => `
+                <article class="rounded-3xl bg-white p-4 shadow-sm">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="font-black">${client.name}</h3>
+                            <p class="text-xs font-bold text-gray-400">Preferência: ${client.preference}</p>
+                        </div>
+                        <span class="status-pill bg-violet-100 text-violet-700">${client.tier}</span>
+                    </div>
+                    <div class="mt-4 grid grid-cols-2 gap-3 text-sm">
+                        <div class="rounded-2xl bg-rose-50 p-3"><b>${client.points}</b><br><span class="text-gray-500">pontos</span></div>
+                        <div class="rounded-2xl bg-gray-50 p-3"><b>${money.format(client.avgTicket)}</b><br><span class="text-gray-500">ticket médio</span></div>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function renderStock() {
+            document.getElementById('stockTable').innerHTML = `
+                <div class="grid grid-cols-[1.4fr_0.6fr_0.7fr] bg-gray-950 px-4 py-3 text-xs font-black uppercase tracking-widest text-white">
+                    <span>Produto</span><span>Estoque</span><span>Status</span>
+                </div>
+                ${products.map(product => `
+                    <div class="grid grid-cols-[1.4fr_0.6fr_0.7fr] items-center border-t border-gray-100 px-4 py-3 text-sm">
+                        <div>
+                            <p class="font-black">${product.name}</p>
+                            <p class="text-xs font-bold text-gray-400">Mínimo: ${product.min} • Margem: ${productMargin(product).toFixed(0)}%</p>
+                        </div>
+                        <strong>${product.stock}</strong>
+                        <span class="status-pill ${product.stock <= product.min ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-700'}">${product.stock <= product.min ? 'Comprar' : 'OK'}</span>
+                    </div>
+                `).join('')}
+            `;
+        }
+
+        function renderSchedule() {
+            document.getElementById('scheduleList').innerHTML = schedules.map(item => `
+                <div class="flex gap-4 rounded-3xl bg-white p-4 shadow-sm">
+                    <div class="rounded-2xl bg-violet-100 px-3 py-2 text-center font-black text-violet-700">${item.time}</div>
+                    <div class="flex-1">
+                        <p class="font-black">${item.client}</p>
+                        <p class="text-sm font-semibold text-gray-500">${item.service}</p>
+                    </div>
+                    <span class="status-pill ${item.status === 'Pendente' ? 'bg-amber-100 text-amber-700' : 'bg-emerald-100 text-emerald-700'}">${item.status}</span>
+                </div>
+            `).join('');
+        }
+
+        function renderSales() {
+            const baseSales = [
+                { id: 'BF-1028', client: 'Ana Paula', total: 238.70, items: 3, time: '08:45' },
+                { id: 'BF-1027', client: 'Camila Torres', total: 184.80, items: 2, time: 'Ontem' },
+                { id: 'BF-1026', client: 'Bruna Lima', total: 96.40, items: 2, time: 'Ontem' }
+            ];
+            const history = [...state.sales, ...baseSales].slice(0, 8);
+            document.getElementById('salesHistory').innerHTML = history.map(sale => `
+                <div class="flex flex-col gap-3 rounded-3xl bg-white p-4 shadow-sm md:flex-row md:items-center md:justify-between">
+                    <div>
+                        <p class="font-black">${sale.id} • ${sale.client}</p>
+                        <p class="text-sm font-semibold text-gray-500">${sale.items} itens • ${sale.time}</p>
+                    </div>
+                    <div class="text-left md:text-right">
+                        <p class="text-xl font-black">${money.format(sale.total)}</p>
+                        <span class="status-pill bg-emerald-100 text-emerald-700"><i class="fa-solid fa-check"></i>Pago</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function finishSale() {
+            if (!state.cart.length) {
+                alert('Adicione ao menos um produto ao carrinho.');
+                return;
+            }
+            const client = clients.find(item => item.id === Number(document.getElementById('clientSelect').value));
+            const totals = cartTotals();
+            const sale = {
+                id: `BF-${Math.floor(1100 + Math.random() * 8999)}`,
+                client: client.name,
+                total: totals.total,
+                items: state.cart.reduce((sum, item) => sum + item.qty, 0),
+                time: 'Agora'
+            };
+            state.sales.unshift(sale);
+            state.cart.forEach(item => {
+                const product = products.find(product => product.id === item.id);
+                product.stock = Math.max(0, product.stock - item.qty);
+            });
+            persistSales();
+            state.cart = [];
+            document.getElementById('saleMessage').textContent = `${sale.id} para ${sale.client} no valor de ${money.format(sale.total)} foi adicionada ao histórico.`;
+            document.getElementById('saleModal').classList.add('open');
+            renderAll();
+        }
+
+        function closeModal() {
+            document.getElementById('saleModal').classList.remove('open');
+        }
+
+        function openQuickSale() {
+            document.getElementById('pdv').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('searchInput').focus();
+        }
+
+        function simulateRestock() {
+            products.forEach(product => {
+                if (product.stock <= product.min) product.stock += product.min * 2;
+            });
+            renderAll();
+        }
+
+        function addLead() {
+            alert('Em uma versão com backend, esta ação abriria o cadastro completo de cliente com WhatsApp, data de aniversário, preferências e LGPD.');
+        }
+
+        function renderAll() {
+            renderDashboard();
+            renderCategories();
+            renderProducts();
+            renderCart();
+            renderClients();
+            renderStock();
+            renderSchedule();
+            renderSales();
+        }
+
+        document.getElementById('searchInput').addEventListener('input', renderProducts);
+        renderAll();
+    </script>
 </body>
 </html>
